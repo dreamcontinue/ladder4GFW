@@ -1,0 +1,67 @@
+{
+  "log" : {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": [
+      "https+local://1.1.1.1/dns-query",
+	  "1.1.1.1",
+	  "1.0.0.1",
+	  "8.8.8.8",
+	  "8.8.4.4",
+	  "localhost"
+    ]
+  },
+  "inbounds": [{
+      "port": PORT,
+      "protocol": "vmess",    // 入站协议为 VMess
+      "settings": {
+        "clients": [{
+	      "id":"anotherx-zzzz-yyyy-hhhh-balabalabala",
+	      "alterId": 2
+          }]
+      }
+    }],
+  "outbounds": [{  // 输出流量的配置可直接复制本地客户端上的配置
+      "mux": {
+        "enabled": false,
+        "concurrency": 8
+      },
+      "protocol": "vmess",
+      "streamSettings": {
+        "wsSettings": {
+          "path": "/PATH/",
+          "headers": {
+            "host": "DOMAIN1.COM"
+          }
+        },
+        "tlsSettings": {
+          "serverName": "DOMAIN2.COM",
+          "allowInsecure": true
+        },
+        "security": "tls",
+        "network": "ws"
+      },
+      "settings": {
+        "vnext": [{
+            "address": "DOMAIN.COM",
+            "users": [{
+                "id": "xxxxxxxx-zzzz-yyyy-hhhh-balabalabala",
+                "alterId": 2,
+                "level": 0,
+                "security": "auto"
+              }],
+            "port": 443
+          }]
+      }
+    }
+  ],
+  "routing": {
+    "settings": {
+      "domainStrategy": "AsIs",
+      "rules": []
+    }
+  }
+}
