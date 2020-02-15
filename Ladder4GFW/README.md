@@ -56,7 +56,7 @@
   
     `sudo service caddy start`
     
-  - 由于caddy申请的证书只有3个月有效期，到期后需先关闭caddy和trojan后再执行该步骤，修改下Caddyfile文件获取新证书
+  - **由于caddy申请的证书只有3个月有效期，到期后需先关闭caddy和trojan后再执行该步骤，修改下Caddyfile文件获取新证书**
 
 3. 安装与配置trojan、Caddyfile
 
